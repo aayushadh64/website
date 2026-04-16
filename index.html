@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina AI | Demystifying the Complex</title>
+    <meta name="description" content="Lumina AI uses Google's Gemini to translate complex medical, legal, and technical jargon into simple terms.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@300;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="nav-content">
+            <div class="logo">
+                <i class="fa-solid fa-lightbulb"></i>
+                <span>Lumina AI</span>
+            </div>
+            <button id="configBtn" class="btn btn-outline">
+                <i class="fa-solid fa-key"></i>
+                <span id="configBtnText">Setup API Key</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="badge glow-text">Powered by Google Gemini</div>
+            <h1 class="gradient-text">Understand Anything.</h1>
+            <p>Paste complex medical reports, dense legal contracts, or obscure technical documentation, and let AI explain it simply.</p>
+        </header>
+
+        <!-- Tool Selection Grid -->
+        <section class="tools-grid">
+            <div class="tool-card glass active" data-tool="medical">
+                <div class="tool-icon bg-gradient-medical">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+                <h3>Medical</h3>
+                <p>Translate lab results and medical jargon into plain English.</p>
+            </div>
+            
+            <div class="tool-card glass" data-tool="legal">
+                <div class="tool-icon bg-gradient-legal">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                </div>
+                <h3>Legal</h3>
+                <p>Simplify contracts, terms of service, and legal documents.</p>
+            </div>
+
+            <div class="tool-card glass" data-tool="tech">
+                <div class="tool-icon bg-gradient-tech">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <h3>Technical</h3>
+                <p>Demystify code, architecture documents, and technical specs.</p>
+            </div>
+        </section>
+
+        <!-- Input Section -->
+        <section class="workspace glass animate-up">
+            <label for="sourceText" id="inputLabel" class="input-label">Paste your Medical Text</label>
+            <textarea id="sourceText" placeholder="Enter the text you want to simplify here..." spellcheck="false"></textarea>
+            
+            <div class="actions">
+                <div class="status-indicator">
+                    <span class="dot"></span>
+                    <span id="statusText">Ready</span>
+                </div>
+                <button id="simplifyBtn" class="btn btn-primary">
+                    <span>Simplify Text</span>
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </button>
+            </div>
+
+            <!-- Loader -->
+            <div id="loader" class="loader-container hidden">
+                <div class="spinner"></div>
+                <p class="pulsing-text">Analyzing text...</p>
+            </div>
+
+            <!-- Results area -->
+            <div id="resultContainer" class="result-area hidden">
+                <div class="result-header">
+                    <h4>Simplified Explanation</h4>
+                    <button id="copyBtn" class="btn-icon" title="Copy to clipboard">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+                <div id="resultContent" class="markdown-body"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- API Key Modal -->
+    <div id="apiModal" class="modal-overlay hidden">
+        <div class="modal glass-modal">
+            <div class="modal-header">
+                <h2>Configuration</h2>
+                <button id="closeModalBtn" class="btn-icon">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Lumina AI runs completely locally in your browser. To process text, you need a free Google Gemini API Key.</p>
+                <div class="info-box">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>Your key is saved locally in your browser and never sent to any of our servers.</span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="apiKeyInput">Google Gemini API Key</label>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-key input-icon"></i>
+                        <input type="password" id="apiKeyInput" placeholder="AIzaSy...">
+                        <button id="toggleVisibleBtn" type="button" class="btn-icon inline">
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <a href="https://aistudio.google.com/app/apikey" target="_blank" class="link-styled">
+                    Get a free key from Google AI Studio <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+            <div class="modal-footer">
+                <button id="removeKeyBtn" class="btn btn-danger hidden">Remove Key</button>
+                <button id="saveKeyBtn" class="btn btn-primary">Save Configuration</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
