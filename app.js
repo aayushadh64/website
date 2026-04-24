@@ -99,7 +99,7 @@ const dot = document.querySelector('.dot');
 // =====================================================================
 // INIT
 // =====================================================================
-const DEFAULT_API_KEY = 'AIzaSyAlgh-sS9PwYqv8QoIOL02o2dtiIjllvxA';
+const DEFAULT_API_KEY = '';
 
 function init() {
   // Use saved key, or fall back to the built-in default key
